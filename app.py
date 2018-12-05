@@ -7,3 +7,11 @@ def counting_crime():
     crime = [row for row in data]
     count_set = [0, 0, 0, 0, 0, 0]
     crimes_count = {"2013": 0, "2014": 0, "2015": 0, "2016": 0, "2017": 0, "2018": 0}
+    for crime_data in range(1, len(crimes)):
+        date = crimes[crime_data][1]
+        if date[:4] == "2013":
+            count_set[0] += 1
+            crimes_count["2013"] = count_set[0]
+        elif date[:4] == "2014":
+            count_set[1] += 1
+            crimes_count["2014"] = count_set[1]
