@@ -15,3 +15,6 @@ def counting_crime():
         elif date[:4] == "2014":
             count_set[1] += 1
             crimes_count["2014"] = count_set[1]
+        elif date[:4] == "2015":
+            count_set[2] += 1
+            crimes_count["2015"] = count_set[2]
