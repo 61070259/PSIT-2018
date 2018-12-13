@@ -6,7 +6,7 @@ def gun_violence():
     Create the required variables to use in another function and
     call them here.
     """
-    gun_data = open("gun-violence-data_01-2013_03-2018.csv", encoding="utf8")
+    gun_data = open("gun-violence-data_01-2013_03-2018_edited.csv", encoding="utf8")
     read = csv.reader(gun_data)
     case = [row for row in read]
     case_count = {"2013": 0, "2014": 0, "2015": 0, "2016": 0, "2017": 0}
@@ -30,20 +30,20 @@ def all_case(data_set, count, case):
     """Count number of case that happened from 1st January 2013 to 
     31th December 2017 and add them to dictionary."""
     for case_data in range(1, len(case)):
-        date = case[case_data][1]
-        if date[:4] == "2013":
+        date = case[case_data][0].split("/")
+        if date[2] == "2013":
             count[0] += 1
             data_set["2013"] = count[0]
-        elif date[:4] == "2014":
+        elif date[2] == "2014":
             count[1] += 1
             data_set["2014"] = count[1]
-        elif date[:4] == "2015":
+        elif date[2] == "2015":
             count[2] += 1
             data_set["2015"] = count[2]
-        elif date[:4] == "2016":
+        elif date[2] == "2016":
             count[3] += 1
             data_set["2016"] = count[3]
-        elif date[:4] == "2017":
+        elif date[2] == "2017":
             count[4] += 1
             data_set["2017"] = count[4]
     return data_set
@@ -55,22 +55,22 @@ def with_victim(data_set, count, case):
     31th December 2017 and add them to dictionary.
     """ 
     for case_data in range(1, len(case)):
-        date = case[case_data][1]
-        death = int(case[case_data][5])
-        injured = int(case[case_data][6])
-        if date[:4] == "2013" and death+injured > 0:
+        date = case[case_data][0].split("/")
+        death = int(case[case_data][1])
+        injured = int(case[case_data][2])
+        if date[2] == "2013" and death+injured > 0:
             count[0] += 1
             data_set["2013"] = count[0]
-        elif date[:4] == "2014" and death+injured > 0:
+        elif date[2] == "2014" and death+injured > 0:
             count[1] += 1
             data_set["2014"] = count[1]
-        elif date[:4] == "2015" and death+injured > 0:
+        elif date[2] == "2015" and death+injured > 0:
             count[2] += 1
             data_set["2015"] = count[2]
-        elif date[:4] == "2016" and death+injured > 0:
+        elif date[2] == "2016" and death+injured > 0:
             count[3] += 1
             data_set["2016"] = count[3]
-        elif date[:4] == "2017" and death+injured > 0:
+        elif date[2] == "2017" and death+injured > 0:
             count[4] += 1
             data_set["2017"] = count[4]
     return data_set
@@ -82,22 +82,22 @@ def all_victim(data_set, count, case):
     31th December 2017 and add them to dictionary.
     """
     for case_data in range(1, len(case)):
-        date = case[case_data][1]
-        death = int(case[case_data][5])
-        injured = int(case[case_data][6])
-        if date[:4] == "2013":
+        date = case[case_data][0].split("/")
+        death = int(case[case_data][1])
+        injured = int(case[case_data][2])
+        if date[2] == "2013":
             count[0] += death+injured
             data_set["2013"] = count[0]
-        elif date[:4] == "2014":
+        elif date[2] == "2014":
             count[1] += death+injured
             data_set["2014"] = count[1]
-        elif date[:4] == "2015":
+        elif date[2] == "2015":
             count[2] += death+injured
             data_set["2015"] = count[2]
-        elif date[:4] == "2016":
+        elif date[2] == "2016":
             count[3] += death+injured
             data_set["2016"] = count[3]
-        elif date[:4] == "2017":
+        elif date[2] == "2017":
             count[4] += death+injured
             data_set["2017"] = count[4]
     return data_set
@@ -109,23 +109,23 @@ def three_month(data_set, count, case):
     31th March in each year and add them to dictionary.
     """
     for case_data in range(1, len(case)):
-        date = case[case_data][1]
-        if date[:4] == "2013" and int(date[5:7]) <= 3:
+        date = case[case_data][0].split("/")
+        if date[2] == "2013" and int(date[1]) <= 3:
             count[0] += 1
             data_set["2013"] = count[0]
-        elif date[:4] == "2014" and int(date[5:7]) <= 3:
+        elif date[2] == "2014" and int(date[1]) <= 3:
             count[1] += 1
             data_set["2014"] = count[1]
-        elif date[:4] == "2015" and int(date[5:7]) <= 3:
+        elif date[2] == "2015" and int(date[1]) <= 3:
             count[2] += 1
             data_set["2015"] = count[2]
-        elif date[:4] == "2016" and int(date[5:7]) <= 3:
+        elif date[2] == "2016" and int(date[1]) <= 3:
             count[3] += 1
             data_set["2016"] = count[3]
-        elif date[:4] == "2017" and int(date[5:7]) <= 3:
+        elif date[2] == "2017" and int(date[1]) <= 3:
             count[4] += 1
             data_set["2017"] = count[4]
-        elif date[:4] == "2018" and int(date[5:7]) <= 3:
+        elif date[2] == "2018" and int(date[1]) <= 3:
             count[5] += 1
             data_set["2018"] = count[5]
     return data_set
